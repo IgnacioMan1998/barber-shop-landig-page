@@ -78,11 +78,11 @@
   }
   
   main {
-    gap: 4rem !important; /* Menor espaciado en móvil */
+    gap: 0 !important; /* Sin espacios en móvil */
   }
   
   main > * {
-    padding: 3rem 0 !important; /* Menos padding en móvil */
+    padding: 0 !important; /* Sin padding en móvil */
   }
 }
 
@@ -97,24 +97,25 @@ main > * {
   margin: 0;
 }
 
-/* 🎨 ESPACIADO SIMPLIFICADO PARA SECCIONES */
+/* 🎨 ESPACIADO MINIMIZADO PARA SECCIONES */
 main {
   display: flex;
   flex-direction: column;
-  gap: 4rem; /* Reducido de 8rem a 4rem */
+  gap: 0; /* Eliminado el gap entre secciones */
 }
 
-/* Secciones con espaciado normal */
+/* Secciones sin espaciado extra */
 main > * {
-  padding: 3rem 0; /* Reducido de 6rem a 3rem */
+  padding: 0; /* Eliminado padding */
+  margin: 0; /* Sin márgenes */
 }
 
-/* Espaciado especial para hero (sin padding top) */
+/* Espaciado especial para hero (sin padding) */
 main > app-hero {
-  padding-top: 0;
+  padding: 0;
 }
 
-/* Espaciado especial para footer */
+/* Sin espaciado especial para footer */
 main > app-contact {
-  padding-bottom: 2rem; /* Reducido */
+  padding: 0;
 }

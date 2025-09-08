@@ -1,5 +1,6 @@
 .about {
   background: var(--bg-secondary);
+  padding: 4rem 0; /* Padding interno para la sección */
 }
 
 .section-header {

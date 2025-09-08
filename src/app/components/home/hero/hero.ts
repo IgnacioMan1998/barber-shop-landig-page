@@ -192,81 +192,41 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
     // Scroll indicator simple
     this.initScrollIndicatorAnimation();
 
-    // Efectos hover cheveres
-    this.initHoverEffects();
+    // NO HOVER EFFECTS - Para evitar problemas de visibilidad
+
+    // Verificación final de visibilidad después de todas las animaciones
+    setTimeout(() => {
+      this.ensureVisibilityAfterAnimations();
+    }, 2000);
   }
 
-  private initHoverEffects() {
-    // 🎯 EFECTOS HOVER CHEVERES
-    
-    // Hover en títulos
-    document.querySelectorAll('.title-line').forEach(line => {
-      line.addEventListener('mouseenter', () => {
-        gsap.to(line, {
-          scale: 1.05,
-          rotationY: 5,
-          textShadow: "0 0 20px rgba(212, 175, 55, 0.8)",
-          duration: 0.3,
-          ease: "power2.out"
-        });
-      });
+  private ensureVisibilityAfterAnimations() {
+    // 🛡️ ASEGURAR VISIBILIDAD DESPUÉS DE ANIMACIONES
+    const criticalElements = [
+      '.title-line',
+      '.hero-badge',
+      '.hero-subtitle',
+      '.stat-item',
+      '.hero-cta .btn'
+    ];
 
-      line.addEventListener('mouseleave', () => {
-        gsap.to(line, {
-          scale: 1,
-          rotationY: 0,
-          textShadow: "none",
-          duration: 0.3,
-          ease: "power2.out"
-        });
+    criticalElements.forEach(selector => {
+      const elements = document.querySelectorAll(selector);
+      elements.forEach(element => {
+        if (element instanceof HTMLElement) {
+          // Verificar si está invisible y corregir
+          const computedStyle = window.getComputedStyle(element);
+          if (computedStyle.opacity === '0' || computedStyle.visibility === 'hidden') {
+            console.log(`Corrigiendo visibilidad de: ${selector}`);
+            gsap.set(element, { 
+              opacity: 1, 
+              visibility: 'visible',
+              clearProps: "transform"
+            });
+          }
+        }
       });
     });
-
-    // Hover en botones
-    document.querySelectorAll('.hero-cta .btn').forEach(btn => {
-      btn.addEventListener('mouseenter', () => {
-        gsap.to(btn, {
-          scale: 1.05,
-          rotation: 2,
-          y: -3,
-          boxShadow: "0 10px 25px rgba(212, 175, 55, 0.3)",
-          duration: 0.3,
-          ease: "back.out(1.7)"
-        });
-      });
-
-      btn.addEventListener('mouseleave', () => {
-        gsap.to(btn, {
-          scale: 1,
-          rotation: 0,
-          y: 0,
-          boxShadow: "none",
-          duration: 0.3,
-          ease: "power2.out"
-        });
-      });
-    });
-
-    // Hover en badge
-    if (this.heroBadge?.nativeElement) {
-      this.heroBadge.nativeElement.addEventListener('mouseenter', () => {
-        gsap.to(this.heroBadge.nativeElement, {
-          scale: 1.1,
-          rotation: 5,
-          duration: 0.3,
-          ease: "back.out(1.7)"
-        });
-      });
-
-      this.heroBadge.nativeElement.addEventListener('mouseleave', () => {
-        gsap.to(this.heroBadge.nativeElement, {
-          scale: 1,
-          rotation: 0,
-          duration: 0.3,
-          ease: "power2.out"
-        });
-      });
-    }
   }
 
   private initFloatingAnimations() {
