@@ -1,5 +1,6 @@
 .services {
   background: var(--bg-primary);
+  padding: 4rem 0;
 }
 
 .services-grid {
