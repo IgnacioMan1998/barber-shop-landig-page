@@ -1,4 +1,4 @@
-<section class="gallery-section">
+<section class="gallery-section" #galleryContainer>
   <div class="container">
     <!-- Gallery Header -->
     <div class="gallery-header text-center">
@@ -22,7 +22,7 @@
     <!-- Gallery Grid -->
     <div class="gallery-grid">
       <div 
-        *ngFor="let image of filteredImages; trackBy: trackByImageId" 
+        *ngFor="let image of filteredImages; trackBy: trackByImageId; let i = index" 
         class="gallery-item"
         [attr.data-category]="image.category">
         
@@ -31,9 +31,15 @@
             <img [src]="image.imageUrl" [alt]="image.title" class="gallery-image" loading="lazy">
             <div class="image-overlay">
               <div class="overlay-content">
-                <h3 class="image-title">{{ image.title }}</h3>
-                <p class="image-description">{{ image.description }}</p>
-                <span class="image-category">{{ image.category | titlecase }}</span>
+                <span class="image-number animate-text">{{ (i + 1).toString().padStart(2, '0') }}</span>
+                <h3 class="image-title animate-text">
+                  <span class="text-line">{{ image.title.split(' ')[0] }}</span>
+                  <span class="text-line">{{ image.title.split(' ').slice(1).join(' ') }}</span>
+                </h3>
+                <p class="image-description animate-text">
+                  <span class="text-reveal">{{ image.description }}</span>
+                </p>
+                <span class="image-category animate-text">{{ image.category | titlecase }}</span>
               </div>
             </div>
           </div>

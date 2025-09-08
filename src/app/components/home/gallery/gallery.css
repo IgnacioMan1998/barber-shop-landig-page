@@ -279,6 +279,168 @@
   }
 }
 
+/* 🎭 TEXT ANIMATIONS */
+.animate-text {
+  overflow: hidden;
+  position: relative;
+}
+
+.image-number {
+  display: block;
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
+  color: var(--primary-gold);
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-bottom: 1rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.image-title {
+  font-family: var(--font-primary);
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--primary-gold);
+  line-height: 1.1;
+  overflow: visible;
+}
+
+.text-line {
+  display: block;
+  overflow: hidden;
+  position: relative;
+}
+
+.text-line::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-gold);
+  color: var(--bg-primary);
+  transform: translateY(100%);
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.image-description {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+  overflow: hidden;
+}
+
+.text-reveal {
+  display: block;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s;
+}
+
+.image-category {
+  display: inline-block;
+  background: transparent;
+  color: var(--primary-gold);
+  padding: 0.5rem 1.2rem;
+  border: 2px solid var(--primary-gold);
+  border-radius: var(--radius-lg);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  opacity: 0;
+  transform: translateY(20px) scale(0.8);
+  transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s;
+  position: relative;
+  overflow: hidden;
+}
+
+.image-category::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-gold);
+  transition: left 0.5s ease;
+  z-index: -1;
+}
+
+/* Active State Animations */
+.gallery-card:hover .image-number,
+.gallery-card.active .image-number {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.gallery-card:hover .text-line::after,
+.gallery-card.active .text-line::after {
+  transform: translateY(0);
+}
+
+.gallery-card:hover .text-reveal,
+.gallery-card.active .text-reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.gallery-card:hover .image-category,
+.gallery-card.active .image-category {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  color: var(--text-dark);
+}
+
+.gallery-card:hover .image-category::before,
+.gallery-card.active .image-category::before {
+  left: 0;
+}
+
+/* Staggered Text Animation */
+.gallery-card:hover .animate-text:nth-child(1),
+.gallery-card.active .animate-text:nth-child(1) {
+  transition-delay: 0s;
+}
+
+.gallery-card:hover .animate-text:nth-child(2),
+.gallery-card.active .animate-text:nth-child(2) {
+  transition-delay: 0.1s;
+}
+
+.gallery-card:hover .animate-text:nth-child(3),
+.gallery-card.active .animate-text:nth-child(3) {
+  transition-delay: 0.2s;
+}
+
+.gallery-card:hover .animate-text:nth-child(4),
+.gallery-card.active .animate-text:nth-child(4) {
+  transition-delay: 0.3s;
+}
+
+/* Advanced Text Effects */
+@keyframes textShine {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.gallery-card:hover .image-title::before,
+.gallery-card.active .image-title::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: textShine 1.5s ease-in-out;
+}
+
 @media (max-width: 480px) {
   .gallery-grid {
     grid-template-columns: 1fr;
@@ -287,4 +449,35 @@
   .gallery-stats {
     grid-template-columns: 1fr;
   }
+  
+  .image-title {
+    font-size: 1.8rem;
+  }
+  
+  .image-description {
+    font-size: 0.9rem;
+  }
+}
+
+/* Optimización para scroll horizontal */
+.gallery-images {
+  will-change: transform;
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.gallery-item {
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+
+/* Efectos hover mejorados */
+.gallery-item:hover .animate-text {
+  transform: translateY(-5px) translateZ(20px);
+  opacity: 1;
+}
+
+.gallery-item:hover .image-number {
+  animation-duration: 1s;
+  text-shadow: 0 0 20px var(--gold-light);
 }
