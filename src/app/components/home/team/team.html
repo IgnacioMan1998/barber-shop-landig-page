@@ -1,48 +1,44 @@
-<section id="team" class="team section">
+<section id="team" class="team-section" #teamContainer>
   <div class="container">
-    <div class="section-header text-center">
+    <div class="team-header">
       <span class="section-badge">Our Team</span>
-      <h2 class="section-title">Meet Our Expert<br>Barbers</h2>
-      <p class="section-subtitle">Skilled professionals dedicated to your perfect look</p>
+      <h2 class="team-title">Meet Our Expert<br>Barbers</h2>
+      <p class="team-subtitle">Skilled professionals dedicated to your perfect look</p>
     </div>
 
-    <div class="team-grid">
-      <div class="team-member">
-        <div class="member-image">
-          <img src="https://images.pexels.com/photos/1319460/pexels-photo-1319460.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop" 
-               alt="Marcus Johnson - Master Barber" 
-               loading="lazy">
-        </div>
-        <div class="member-info">
-          <h3>Marcus Johnson</h3>
-          <span class="member-role">Master Barber</span>
-          <p>15+ years of experience in classic and modern cuts. Expert in traditional barbering with precision and attention to detail.</p>
-        </div>
-      </div>
-
-      <div class="team-member">
-        <div class="member-image">
-          <img src="https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop" 
-               alt="David Rodriguez - Senior Barber" 
-               loading="lazy">
-        </div>
-        <div class="member-info">
-          <h3>David Rodriguez</h3>
-          <span class="member-role">Senior Barber</span>
-          <p>Creative stylist specializing in modern cuts and fades. Passionate about bringing fresh trends to classic styles.</p>
-        </div>
-      </div>
-
-      <div class="team-member">
-        <div class="member-image">
-          <img src="https://images.pexels.com/photos/1300402/pexels-photo-1300402.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop" 
-               alt="Antonio Silva - Expert Barber" 
-               loading="lazy">
-        </div>
-        <div class="member-info">
-          <h3>Antonio Silva</h3>
-          <span class="member-role">Expert Barber</span>
-          <p>Master of traditional techniques with exceptional customer service. Dedicated to providing premium grooming experiences.</p>
+    <div class="team-images">
+      <div class="team-item" *ngFor="let member of teamMembers; let i = index">
+        <div class="team-card">
+          <div class="image-container">
+            <img [src]="member.imageUrl" 
+                 [alt]="member.name + ' - ' + member.role" 
+                 class="team-image"
+                 loading="lazy">
+            
+            <div class="image-overlay">
+              <div class="overlay-content">
+                <div class="animate-text">
+                  <span class="image-number">{{(i + 1).toString().padStart(2, '0')}}</span>
+                </div>
+                
+                <div class="animate-text">
+                  <h3 class="text-line" [attr.data-text]="member.name">{{member.name}}</h3>
+                </div>
+                
+                <div class="animate-text">
+                  <span class="text-reveal member-role">{{member.role}}</span>
+                </div>
+                
+                <div class="animate-text">
+                  <p class="text-reveal member-description">{{member.description}}</p>
+                </div>
+                
+                <div class="animate-text">
+                  <span class="text-reveal experience-badge">{{member.experience}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
