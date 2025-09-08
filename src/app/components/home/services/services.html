@@ -1,38 +1,113 @@
 <section id="services" class="services section">
   <div class="container">
     <div class="section-header text-center">
-      <span class="section-badge">Our Services</span>
-      <h2 class="section-title">Premium Barbershop<br>Services</h2>
-      <p class="section-subtitle">Experience our range of professional grooming services</p>
+      <span class="section-badge">Premium Services</span>
+      <h2 class="section-title">Exceptional Barbershop<br><span class="highlight">Experience</span></h2>
+      <p class="section-subtitle">Discover our signature grooming services, crafted with precision and delivered with uncompromising quality</p>
     </div>
 
     <div class="services-grid">
-      <div class="service-card">
-        <div class="service-icon">✂️</div>
-        <h3>Classic Haircut</h3>
-        <p>Traditional barbershop haircut with scissors and clipper</p>
-        <span class="service-price">$25</span>
+      <div class="service-card" data-service="haircut">
+        <div class="service-header">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L13.09 8.26L19 9L13.09 9.74L12 16L10.91 9.74L5 9L10.91 8.26L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M19 15L20.09 18.26L23 19L20.09 19.74L19 23L17.91 19.74L15 19L17.91 18.26L19 15Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="service-badge">SIGNATURE</div>
+        </div>
+        <div class="service-content">
+          <h3>Master's Cut</h3>
+          <p class="service-description">Precision haircut executed by our master barbers using traditional techniques combined with modern styling</p>
+          <div class="service-features">
+            <span class="feature">Consultation Included</span>
+            <span class="feature">Premium Finish</span>
+            <span class="feature">Style Guidance</span>
+          </div>
+          <div class="service-footer">
+            <span class="service-duration">45 min</span>
+            <span class="service-price">$45</span>
+          </div>
+        </div>
       </div>
 
-      <div class="service-card">
-        <div class="service-icon">🧔</div>
-        <h3>Beard Trim</h3>
-        <p>Professional beard shaping and trimming</p>
-        <span class="service-price">$18</span>
+      <div class="service-card" data-service="beard">
+        <div class="service-header">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M8 12C8 10.8954 8.89543 10 10 10H14C15.1046 10 16 10.8954 16 12V16C16 18.2091 14.2091 20 12 20C9.79086 20 8 18.2091 8 16V12Z" stroke="currentColor" stroke-width="2"/>
+              <path d="M12 6V10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M9 8L10 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <path d="M15 8L14 9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="service-badge">POPULAR</div>
+        </div>
+        <div class="service-content">
+          <h3>Beard Sculpting</h3>
+          <p class="service-description">Professional beard shaping and grooming with hot towel treatment and premium conditioning oils</p>
+          <div class="service-features">
+            <span class="feature">Hot Towel Treatment</span>
+            <span class="feature">Precision Trimming</span>
+            <span class="feature">Oil Treatment</span>
+          </div>
+          <div class="service-footer">
+            <span class="service-duration">35 min</span>
+            <span class="service-price">$35</span>
+          </div>
+        </div>
       </div>
 
-      <div class="service-card">
-        <div class="service-icon">🪒</div>
-        <h3>Hot Towel Shave</h3>
-        <p>Luxury straight razor shave with hot towel treatment</p>
-        <span class="service-price">$35</span>
+      <div class="service-card" data-service="shave">
+        <div class="service-header">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M3 12H21M12 3V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/>
+              <path d="M8 8L16 16M16 8L8 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="service-badge">LUXURY</div>
+        </div>
+        <div class="service-content">
+          <h3>Royal Shave</h3>
+          <p class="service-description">Traditional straight razor shave with multiple hot towel applications and premium aftercare products</p>
+          <div class="service-features">
+            <span class="feature">Straight Razor</span>
+            <span class="feature">Multiple Hot Towels</span>
+            <span class="feature">Premium Aftercare</span>
+          </div>
+          <div class="service-footer">
+            <span class="service-duration">60 min</span>
+            <span class="service-price">$65</span>
+          </div>
+        </div>
       </div>
 
-      <div class="service-card">
-        <div class="service-icon">💇</div>
-        <h3>Hair Styling</h3>
-        <p>Modern hair styling with premium products</p>
-        <span class="service-price">$30</span>
+      <div class="service-card" data-service="styling">
+        <div class="service-header">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L15.09 8.26L22 9L15.09 9.74L12 16L8.91 9.74L2 9L8.91 8.26L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M4 18L6 20L10 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="service-badge">MODERN</div>
+        </div>
+        <div class="service-content">
+          <h3>Signature Styling</h3>
+          <p class="service-description">Contemporary hair styling using premium products and latest techniques for the perfect finish</p>
+          <div class="service-features">
+            <span class="feature">Premium Products</span>
+            <span class="feature">Modern Techniques</span>
+            <span class="feature">Perfect Finish</span>
+          </div>
+          <div class="service-footer">
+            <span class="service-duration">40 min</span>
+            <span class="service-price">$40</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
