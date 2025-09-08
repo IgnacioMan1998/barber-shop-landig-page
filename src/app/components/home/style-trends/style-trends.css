@@ -136,7 +136,7 @@
 .filter-btn.active {
   background: var(--primary-gold);
   border-color: var(--primary-gold);
-  color: var(--bg-primary);
+  color: #ffffff;
   box-shadow: var(--shadow-medium);
 }
 
@@ -208,7 +208,7 @@
 
 .trending-badge {
   background: var(--primary-gold);
-  color: var(--bg-primary);
+  color: #ffffff;
 }
 
 .category-badge {

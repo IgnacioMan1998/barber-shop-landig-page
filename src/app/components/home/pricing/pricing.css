@@ -99,7 +99,7 @@
   top: -1px;
   right: var(--spacing-lg);
   background: var(--primary-gold);
-  color: var(--bg-primary);
+  color: #ffffff;
   padding: var(--spacing-xs) var(--spacing-md);
   border-radius: 0 0 var(--radius-sm) var(--radius-sm);
   font-size: var(--font-size-sm);
