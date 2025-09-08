@@ -1,0 +1,88 @@
+<section id="style-trends" class="trends-section">
+  <div class="container">
+    <!-- Section Header -->
+    <div class="section-header">
+      <h2 class="trends-title">Latest Style Trends</h2>
+      <p class="section-subtitle">
+        Stay ahead with the most popular and modern grooming styles crafted by our expert barbers
+      </p>
+    </div>
+
+    <!-- Trending Highlights -->
+    <div class="trending-highlight">
+      <h3 class="trending-title">🔥 Trending Now</h3>
+      <div class="trending-cards">
+        <div *ngFor="let trend of trendingStyles" class="trending-card">
+          <div class="trending-image">
+            <img [src]="trend.imageUrl" [alt]="trend.title" loading="lazy">
+            <div class="trending-overlay">
+              <span class="difficulty-badge" [class]="'difficulty-' + trend.difficulty">
+                {{ getDifficultyLabel(trend.difficulty) }}
+              </span>
+            </div>
+          </div>
+          <h4 class="trending-name">{{ trend.title }}</h4>
+        </div>
+      </div>
+    </div>
+
+    <!-- Category Filters -->
+    <div class="category-filters">
+      <button *ngFor="let category of categories" 
+              class="filter-btn" 
+              [class.active]="selectedCategory === category.value"
+              (click)="selectCategory(category.value)">
+        {{ category.label }}
+      </button>
+    </div>
+
+    <!-- Style Trends Grid -->
+    <div class="trends-grid">
+      <div *ngFor="let trend of filteredTrends" class="trend-card">
+        <div class="trend-image">
+          <img [src]="trend.imageUrl" [alt]="trend.title" loading="lazy">
+          <div class="trend-overlay">
+            <div class="trend-badges">
+              <span *ngIf="trend.trending" class="trend-badge trending-badge">Trending</span>
+              <span class="trend-badge category-badge" [class]="'category-' + trend.category">
+                {{ trend.category | titlecase }}
+              </span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="trend-content">
+          <div class="trend-header">
+            <h3 class="trend-title">{{ trend.title }}</h3>
+            <span class="difficulty-indicator" [class]="'difficulty-' + trend.difficulty">
+              {{ getDifficultyLabel(trend.difficulty) }}
+            </span>
+          </div>
+          
+          <p class="trend-description">{{ trend.description }}</p>
+          
+          <div class="trend-footer">
+            <button class="btn btn-outline">Book This Style</button>
+            <div class="trend-meta">
+              <span class="trend-category">{{ trend.category | titlecase }}</span>
+              <span class="trend-difficulty">{{ trend.difficulty | titlecase }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="trends-cta">
+      <h3 class="cta-title">Want a Custom Style?</h3>
+      <p class="cta-text">
+        Our expert barbers can create a unique look tailored specifically for you. 
+        Book a consultation to discuss your perfect style.
+      </p>
+      <div class="cta-buttons">
+        <button class="btn btn-primary">Book Consultation</button>
+        <button class="btn btn-outline">View Gallery</button>
+      </div>
+    </div>
+  </div>
+</section>

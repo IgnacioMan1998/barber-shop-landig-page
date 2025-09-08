@@ -1,0 +1,97 @@
+<svg width="400" height="500" viewBox="0 0 400 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="skinTone" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#d4af94;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#c19a6b;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="hairColor" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4a4a4a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2c2c2c;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="shirtColor" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f0f0f0;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+      <feOffset dx="2" dy="2" result="offset"/>
+      <feFlood flood-color="#000000" flood-opacity="0.3"/>
+      <feComposite in2="offset" operator="in"/>
+      <feMerge> 
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="400" height="500" fill="#0f0f0f"/>
+  
+  <!-- Barber figure -->
+  <g filter="url(#shadow)" transform="translate(50, 50)">
+    <!-- Shirt/Body -->
+    <rect x="80" y="320" width="140" height="130" fill="url(#shirtColor)" rx="10"/>
+    
+    <!-- Collar -->
+    <path d="M120 320 L120 340 L140 350 L160 350 L180 340 L180 320" fill="url(#shirtColor)" stroke="#d0d0d0" stroke-width="1"/>
+    
+    <!-- Neck -->
+    <rect x="140" y="280" width="20" height="40" fill="url(#skinTone)" rx="10"/>
+    
+    <!-- Head -->
+    <ellipse cx="150" cy="200" rx="60" ry="80" fill="url(#skinTone)"/>
+    
+    <!-- Hair -->
+    <path d="M90 160 Q90 120 150 120 Q210 120 210 160 Q210 180 200 190 Q180 200 150 200 Q120 200 100 190 Q90 180 90 160 Z" fill="url(#hairColor)"/>
+    
+    <!-- Mustache -->
+    <ellipse cx="150" cy="220" rx="25" ry="8" fill="url(#hairColor)"/>
+    
+    <!-- Beard -->
+    <path d="M120 240 Q120 280 150 290 Q180 280 180 240 Q180 250 170 260 Q150 270 150 270 Q150 270 130 260 Q120 250 120 240 Z" fill="url(#hairColor)"/>
+    
+    <!-- Eyes -->
+    <ellipse cx="130" cy="190" rx="8" ry="6" fill="#ffffff"/>
+    <ellipse cx="170" cy="190" rx="8" ry="6" fill="#ffffff"/>
+    <circle cx="130" cy="190" r="4" fill="#4a4a4a"/>
+    <circle cx="170" cy="190" r="4" fill="#4a4a4a"/>
+    <circle cx="131" cy="189" r="1" fill="#ffffff"/>
+    <circle cx="171" cy="189" r="1" fill="#ffffff"/>
+    
+    <!-- Eyebrows -->
+    <path d="M120 180 Q130 175 140 180" stroke="url(#hairColor)" stroke-width="3" fill="none"/>
+    <path d="M160 180 Q170 175 180 180" stroke="url(#hairColor)" stroke-width="3" fill="none"/>
+    
+    <!-- Nose -->
+    <path d="M145 200 Q150 210 155 200" stroke="url(#skinTone)" stroke-width="2" fill="none"/>
+    
+    <!-- Arms -->
+    <rect x="40" y="340" width="30" height="80" fill="url(#skinTone)" rx="15"/>
+    <rect x="230" y="340" width="30" height="80" fill="url(#skinTone)" rx="15"/>
+    
+    <!-- Hands -->
+    <ellipse cx="55" cy="430" rx="12" ry="15" fill="url(#skinTone)"/>
+    <ellipse cx="245" cy="430" rx="12" ry="15" fill="url(#skinTone)"/>
+    
+    <!-- Scissors in hand -->
+    <g transform="translate(235, 415) rotate(30)">
+      <path d="M0 0 L8 8 L0 16 Q-2 16 -2 14 L-2 2 Q-2 0 0 0 Z" fill="#d4af37"/>
+      <path d="M16 0 L8 8 L16 16 Q18 16 18 14 L18 2 Q18 0 16 0 Z" fill="#d4af37"/>
+      <circle cx="2" cy="3" r="2" fill="#d4af37"/>
+      <circle cx="14" cy="3" r="2" fill="#d4af37"/>
+    </g>
+    
+    <!-- Shirt details -->
+    <line x1="150" y1="330" x2="150" y2="440" stroke="#d0d0d0" stroke-width="1"/>
+    <circle cx="150" cy="350" r="3" fill="#d0d0d0"/>
+    <circle cx="150" cy="370" r="3" fill="#d0d0d0"/>
+    <circle cx="150" cy="390" r="3" fill="#d0d0d0"/>
+    <circle cx="150" cy="410" r="3" fill="#d0d0d0"/>
+  </g>
+  
+  <!-- Golden accent lines -->
+  <g opacity="0.3">
+    <line x1="0" y1="100" x2="400" y2="100" stroke="#d4af37" stroke-width="1"/>
+    <line x1="0" y1="400" x2="400" y2="400" stroke="#d4af37" stroke-width="1"/>
+  </g>
+</svg>

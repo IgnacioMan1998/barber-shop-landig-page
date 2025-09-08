@@ -1,0 +1,124 @@
+<section id="home" class="hero">
+  <!-- Background Elements -->
+  <div class="hero-bg">
+    <div class="hero-bg-image"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-pattern"></div>
+  </div>
+
+  <!-- Hero Content -->
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-text">
+        <!-- Animated Badge -->
+        <div class="hero-badge" #heroBadge>
+          <span class="badge-text">PREMIUM BARBERSHOP</span>
+        </div>
+
+        <!-- Main Heading -->
+        <h1 class="hero-title" #heroTitle>
+          <span class="title-line">CLASSIC</span>
+          <span class="title-line title-highlight">BARBERSHOP</span>
+          <span class="title-line">EXPERIENCE</span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="hero-subtitle" #heroSubtitle>
+          Experience the finest traditional barbering with modern techniques. 
+          Where craftsmanship meets style in the heart of the city.
+        </p>
+
+        <!-- Hero Stats -->
+        <div class="hero-stats" #heroStats>
+          <div class="stat-item">
+            <span class="stat-number" #statNumber1>15</span>
+            <span class="stat-label">Years Experience</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number" #statNumber2>1200</span>
+            <span class="stat-label">Happy Clients</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number" #statNumber3>5</span>
+            <span class="stat-label">Expert Barbers</span>
+          </div>
+        </div>
+
+        <!-- Hero CTA Buttons -->
+        <div class="hero-cta" #heroCta>
+          <a href="#services" class="btn btn-primary" (click)="scrollToSection('services')">
+            <span>Our Services</span>
+            <i class="btn-icon">→</i>
+          </a>
+          <a href="#about" class="btn btn-outline" (click)="scrollToSection('about')">
+            <span>Learn More</span>
+          </a>
+        </div>
+
+        <!-- Social Proof -->
+        <div class="hero-social-proof" #heroSocial>
+          <div class="social-proof-item">
+            <div class="social-stars">
+              <span class="star">★</span>
+              <span class="star">★</span>
+              <span class="star">★</span>
+              <span class="star">★</span>
+              <span class="star">★</span>
+            </div>
+            <span class="social-text">5.0 Rating on Google</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Image -->
+      <div class="hero-image" #heroImage>
+        <div class="hero-image-wrapper">
+          <div class="placeholder-image main-image">
+            <div class="placeholder-content">
+              <h3>Professional Barber</h3>
+              <p>Main Hero Image</p>
+            </div>
+          </div>
+          
+          <!-- Floating Elements -->
+          <div class="floating-element floating-scissors" #floatingScissors>
+            <img src="/assets/images/icons/scissors.svg" alt="Scissors">
+          </div>
+          
+          <div class="floating-element floating-razor" #floatingRazor>
+            <img src="/assets/images/icons/razor.svg" alt="Razor">
+          </div>
+          
+          <div class="floating-element floating-brush" #floatingBrush>
+            <img src="/assets/images/icons/brush.svg" alt="Brush">
+          </div>
+
+          <!-- Experience Badge -->
+          <div class="experience-badge" #experienceBadge>
+            <div class="badge-content">
+              <span class="badge-number">15+</span>
+              <span class="badge-text">Years<br>Experience</span>
+            </div>
+          </div>
+
+          <!-- Decorative Elements -->
+          <div class="hero-decoration hero-decoration-1"></div>
+          <div class="hero-decoration hero-decoration-2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="scroll-indicator" #scrollIndicator>
+    <div class="scroll-mouse">
+      <div class="scroll-wheel"></div>
+    </div>
+    <span class="scroll-text">Scroll Down</span>
+  </div>
+
+  <!-- Animated Background Elements -->
+  <div class="hero-particles" #heroParticles></div>
+</section>

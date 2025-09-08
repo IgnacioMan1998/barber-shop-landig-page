@@ -1,0 +1,52 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="razorGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f4d03f;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#d4af37;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#b8860b;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="bladeGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#e8e8e8;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#ffffff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d0d0d0;stop-opacity:1" />
+    </linearGradient>
+    <filter id="razorGlow">
+      <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+      <feMerge> 
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Shadow -->
+  <ellipse cx="32" cy="58" rx="18" ry="3" fill="rgba(0,0,0,0.2)"/>
+  
+  <g filter="url(#razorGlow)">
+    <!-- Handle -->
+    <path d="M10 45 Q8 42 8 38 L8 26 Q8 22 12 22 L20 22 Q24 22 24 26 L24 38 Q24 42 22 45 L10 45 Z" 
+          fill="url(#razorGradient)" stroke="#b8860b" stroke-width="1"/>
+    
+    <!-- Handle details -->
+    <rect x="10" y="26" width="12" height="2" fill="#ffffff" opacity="0.3" rx="1"/>
+    <rect x="10" y="30" width="12" height="1" fill="#ffffff" opacity="0.2" rx="0.5"/>
+    <rect x="10" y="34" width="12" height="1" fill="#ffffff" opacity="0.2" rx="0.5"/>
+    <rect x="10" y="38" width="12" height="2" fill="#ffffff" opacity="0.3" rx="1"/>
+    
+    <!-- Blade -->
+    <path d="M24 30 L52 8 Q56 6 58 10 Q56 14 52 12 L24 34 L24 30 Z" 
+          fill="url(#bladeGradient)" stroke="#c0c0c0" stroke-width="1"/>
+    
+    <!-- Blade edge -->
+    <path d="M24 32 L52 10" stroke="#ffffff" stroke-width="1" opacity="0.8"/>
+    
+    <!-- Blade reflection -->
+    <path d="M26 31 L48 12" stroke="#ffffff" stroke-width="0.5" opacity="0.6"/>
+    
+    <!-- Handle grip -->
+    <circle cx="16" cy="32" r="1.5" fill="#b8860b"/>
+    
+    <!-- Pivot point -->
+    <circle cx="24" cy="32" r="2" fill="#b8860b" stroke="#d4af37" stroke-width="0.5"/>
+  </g>
+</svg>

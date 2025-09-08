@@ -1,0 +1,64 @@
+<section class="gallery-section">
+  <div class="container">
+    <!-- Gallery Header -->
+    <div class="gallery-header text-center">
+      <h2 class="gallery-title">Our Gallery</h2>
+      <p class="gallery-subtitle">Witness the artistry and craftsmanship behind every cut, style, and transformation</p>
+    </div>
+
+    <!-- Category Filters -->
+    <div class="gallery-filters">
+      <div class="filter-buttons">
+        <button 
+          *ngFor="let category of categories" 
+          class="category-btn"
+          [class.active]="selectedCategory === category.value"
+          (click)="selectCategory(category.value)">
+          {{ category.label }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Gallery Grid -->
+    <div class="gallery-grid">
+      <div 
+        *ngFor="let image of filteredImages; trackBy: trackByImageId" 
+        class="gallery-item"
+        [attr.data-category]="image.category">
+        
+        <div class="gallery-card">
+          <div class="image-container">
+            <img [src]="image.imageUrl" [alt]="image.title" class="gallery-image" loading="lazy">
+            <div class="image-overlay">
+              <div class="overlay-content">
+                <h3 class="image-title">{{ image.title }}</h3>
+                <p class="image-description">{{ image.description }}</p>
+                <span class="image-category">{{ image.category | titlecase }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gallery Stats -->
+    <div class="gallery-stats">
+      <div class="stat-item">
+        <span class="stat-number">500+</span>
+        <span class="stat-label">Happy Clients</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">15+</span>
+        <span class="stat-label">Years Experience</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">50+</span>
+        <span class="stat-label">Unique Styles</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">98%</span>
+        <span class="stat-label">Satisfaction</span>
+      </div>
+    </div>
+  </div>
+</section>

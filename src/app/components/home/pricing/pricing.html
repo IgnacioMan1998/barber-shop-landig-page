@@ -1,0 +1,76 @@
+<section id="pricing" class="pricing-section">
+  <div class="container">
+    <!-- Section Header -->
+    <div class="section-header">
+      <h2 class="pricing-title">Our Services & Pricing</h2>
+      <p class="section-subtitle">
+        Choose the perfect grooming experience that suits your style and budget
+      </p>
+    </div>
+
+    <!-- Pricing Cards -->
+    <div class="pricing-grid">
+      <div *ngFor="let plan of pricingPlans" 
+           class="pricing-card" 
+           [class.popular]="plan.popular"
+           (click)="selectPlan(plan)">
+        
+        <!-- Popular Badge -->
+        <div *ngIf="plan.badge" class="pricing-badge">
+          {{ plan.badge }}
+        </div>
+
+        <!-- Plan Header -->
+        <div class="pricing-header">
+          <h3 class="plan-name">{{ plan.name }}</h3>
+          <div class="plan-price">
+            <span class="currency">$</span>
+            <span class="amount">{{ plan.price }}</span>
+          </div>
+          <p class="plan-duration">{{ plan.duration }}</p>
+          <p class="plan-description">{{ plan.description }}</p>
+        </div>
+
+        <!-- Services List -->
+        <div class="pricing-body">
+          <ul class="services-list">
+            <li *ngFor="let service of plan.services" class="service-item">
+              <i class="service-icon">✓</i>
+              <span>{{ service }}</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Action Button -->
+        <div class="pricing-footer">
+          <button class="btn btn-primary pricing-btn" 
+                  [class.btn-gold]="plan.popular">
+            Book Now
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Additional Info -->
+    <div class="pricing-info">
+      <p class="info-text">
+        All services include complimentary consultation and aftercare advice. 
+        <strong>Book online and get 10% off your first visit!</strong>
+      </p>
+      <div class="pricing-features">
+        <div class="feature-item">
+          <i class="feature-icon">🕒</i>
+          <span>Flexible scheduling</span>
+        </div>
+        <div class="feature-item">
+          <i class="feature-icon">💳</i>
+          <span>All payment methods accepted</span>
+        </div>
+        <div class="feature-item">
+          <i class="feature-icon">🎯</i>
+          <span>Satisfaction guaranteed</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

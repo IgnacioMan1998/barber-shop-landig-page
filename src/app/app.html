@@ -1,0 +1,46 @@
+<!-- Loading Screen -->
+<div class="loading-screen" [class.hidden]="!showLoading">
+  <div class="loading-content">
+    <img src="/assets/images/logo.svg" alt="Rubick Barbershop" class="loading-logo">
+    <div class="spinner"></div>
+    <p class="loading-text">Loading Experience...</p>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="main-content" [class.visible]="!showLoading">
+  <!-- Header -->
+  <app-header></app-header>
+
+  <!-- Main Sections -->
+  <main>
+    <!-- Hero Section -->
+    <app-hero></app-hero>
+
+    <!-- About Section -->
+    <app-about></app-about>
+
+    <!-- Services Section -->
+    <app-services></app-services>
+
+    <!-- Pricing Section -->
+    <app-pricing></app-pricing>
+
+    <!-- Gallery Section -->
+    <app-gallery></app-gallery>
+
+    <!-- Team Section -->
+    <app-team></app-team>
+
+    <!-- Testimonials Section -->
+    <app-testimonials></app-testimonials>
+
+    <!-- Contact Section -->
+    <app-contact></app-contact>
+  </main>
+
+  <!-- Footer -->
+  <app-footer></app-footer>
+</div>
+
+<router-outlet />
