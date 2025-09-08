@@ -174,10 +174,10 @@ export class Team implements OnInit, AfterViewInit {
 
   private initTeamAnimations() {
     // Animación del título con reveal dramático
-    this.animationService.sectionRevealAnimation('.team-title');
+    this.animationService.sectionRevealAnimation('.section-title');
     
     // Animación del subtítulo
-    this.animationService.heroEntryAnimation('.team-subtitle');
+    this.animationService.heroEntryAnimation('.section-subtitle');
     
     // Animación individual para cada imagen
     document.querySelectorAll('.team-item').forEach((item) => {

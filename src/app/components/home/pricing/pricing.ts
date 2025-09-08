@@ -78,7 +78,7 @@ export class PricingComponent implements OnInit, AfterViewInit {
     // 🎪 ANIMACIONES ESPECTACULARES PARA LAS CARDS
     
     // Animación del título con reveal dramático
-    this.animationService.sectionRevealAnimation('.pricing-title');
+    this.animationService.sectionRevealAnimation('.section-title');
     
     // Animación stagger increíble para las cards
     this.animationService.staggerAnimation('.pricing-card');

@@ -21,18 +21,6 @@
   margin-bottom: var(--spacing-md);
 }
 
-.section-title {
-  font-size: var(--fs-h1);
-  margin-bottom: var(--spacing-md);
-}
-
-.section-subtitle {
-  font-size: 1.1rem;
-  color: var(--text-secondary);
-  max-width: 600px;
-  margin: 0 auto;
-}
-
 .about-content {
   display: grid;
   grid-template-columns: 1fr 1fr;

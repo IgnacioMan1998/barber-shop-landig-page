@@ -336,3 +336,45 @@ a:hover {
     transform: scale(1);
   }
 }
+
+/* 🎨 SECTION TITLE STYLES - Consistent across all sections */
+.section-header {
+  margin-bottom: 4rem;
+  text-align: center;
+}
+
+.section-badge {
+  display: inline-block;
+  background: rgba(212, 175, 55, 0.1);
+  color: var(--primary-gold);
+  padding: 0.5rem 1.5rem;
+  border-radius: var(--radius-xl);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+.section-title {
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, var(--primary-gold) 0%, #f4d03f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+  line-height: 1.1;
+  position: relative;
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}

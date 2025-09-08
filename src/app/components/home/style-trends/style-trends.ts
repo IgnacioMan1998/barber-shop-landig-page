@@ -117,7 +117,7 @@ export class StyleTrendsComponent implements OnInit, AfterViewInit {
     // 🎨 ANIMACIONES ÉPICAS PARA STYLE TRENDS
     
     // Animación del título con reveal dramático
-    this.animationService.sectionRevealAnimation('.trends-title');
+    this.animationService.sectionRevealAnimation('.section-title');
     
     // Animación de filtros con efecto 3D
     this.animationService.heroEntryAnimation('.category-filters');

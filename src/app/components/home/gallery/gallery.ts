@@ -130,7 +130,7 @@ export class GalleryComponent implements OnInit, AfterViewInit {
 
   private initGalleryAnimations() {
     // Animación del título con reveal dramático
-    this.animationService.sectionRevealAnimation('.gallery-title');
+    this.animationService.sectionRevealAnimation('.section-title');
     
     // Animación de filtros con efecto 3D
     this.animationService.heroEntryAnimation('.gallery-filters');
