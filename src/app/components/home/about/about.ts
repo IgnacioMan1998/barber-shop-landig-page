@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
+import { AnimationService } from '../../../services/animation';
 
 @Component({
   selector: 'app-about',
@@ -6,6 +7,16 @@ import { Component } from '@angular/core';
   templateUrl: './about.html',
   styleUrl: './about.css'
 })
-export class About {
+export class About implements AfterViewInit {
 
+  constructor(private animationService: AnimationService) {}
+
+  ngAfterViewInit() {
+    this.initAboutAnimations();
+  }
+
+  private initAboutAnimations() {
+    // Animación del subtítulo
+    this.animationService.heroEntryAnimation('.section-subtitle');
+  }
 }
