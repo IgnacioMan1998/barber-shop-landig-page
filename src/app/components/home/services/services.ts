@@ -20,6 +20,6 @@ export class Services implements AfterViewInit {
     this.animationService.heroEntryAnimation('.section-subtitle');
     
     // Animación del título de la sección
-    this.animationService.sectionTitleAnimation('.section-title');
+    this.animationService.sectionTitleAnimation('.section-title', '#services');
   }
 }

@@ -17,7 +17,7 @@ export class Contact implements AfterViewInit {
 
   private initContactAnimations() {
     // Animación del título de la sección
-    this.animationService.sectionTitleAnimation('.section-title');
+    this.animationService.sectionTitleAnimation('.section-title', '#contact');
     
     // Animación del subtítulo
     this.animationService.heroEntryAnimation('.section-subtitle');

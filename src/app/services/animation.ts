@@ -203,8 +203,11 @@ export class AnimationService {
   }
 
   // 🌟 ANIMACIÓN DE TÍTULO DE SECCIÓN CON SCROLL
-  sectionTitleAnimation(element: string | Element): void {
+  sectionTitleAnimation(element: string | Element, trigger?: string): void {
     if (!this.isBrowser) return;
+
+    // Si no se proporciona un trigger, usar el elemento mismo
+    const triggerElement = trigger || element;
 
     // Animación de entrada suave para títulos de sección
     gsap.fromTo(element,
@@ -220,7 +223,7 @@ export class AnimationService {
         duration: 1, 
         ease: "power2.out",
         scrollTrigger: {
-          trigger: element,
+          trigger: triggerElement,
           start: "top 80%",
           toggleActions: "play none none reverse"
         }

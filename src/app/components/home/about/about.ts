@@ -18,5 +18,8 @@ export class About implements AfterViewInit {
   private initAboutAnimations() {
     // Animación del subtítulo
     this.animationService.heroEntryAnimation('.section-subtitle');
+    
+    // Animación del título de la sección
+    this.animationService.sectionTitleAnimation('.section-title', '#about');
   }
 }
