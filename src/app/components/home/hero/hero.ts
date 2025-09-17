@@ -40,7 +40,7 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
     if (isPlatformBrowser(this.platformId)) {
       // Pequeño delay para asegurar que los elementos estén en el DOM
       setTimeout(() => {
-        this.initHeroAnimations();
+        this.initScrollAnimations();
         
         // Fallback: forzar visibilidad después de 3 segundos
         setTimeout(() => {
@@ -118,7 +118,7 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
   private initHeroAnimations() {
     // 🚀 ANIMACIONES SIMPLES Y EFECTIVAS
     
-    // PRIMERO: Asegurar que los elementos sean visibles por defecto
+    // PRIMERO: Asegurar que los elementos estén en estado inicial para animaciones
     gsap.set([
       this.heroBadge.nativeElement,
       '.title-line',
@@ -126,78 +126,13 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
       '.stat-item',
       '.hero-cta .btn'
     ], { 
-      opacity: 1, 
-      y: 0,
+      opacity: 0, 
+      y: 30,
       clearProps: "transform"
     });
 
-    // Timeline principal simple
-    const heroTl = this.animationService.heroEntryAnimation('.hero-content');
-    if (!heroTl) {
-      console.log('No se pudo crear timeline, elementos ya visibles');
-      return;
-    }
-
-    // Animaciones básicas que funcionan CON EFECTOS CHEVERES
-    heroTl
-      .from(this.heroBadge.nativeElement, {
-        opacity: 0,
-        scale: 0.5,
-        rotation: 180,
-        y: 20,
-        duration: 1.2,
-        ease: "back.out(2)"
-      })
-      .from('.title-line', {
-        opacity: 0,
-        y: 50,
-        rotationX: 90,
-        scale: 0.8,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: "back.out(1.7)"
-      }, "-=0.6")
-      .from(this.heroSubtitle.nativeElement, {
-        opacity: 0,
-        y: 30,
-        rotationY: 25,
-        duration: 0.8,
-        ease: "power3.out"
-      }, "-=0.4")
-      .from('.stat-item', {
-        opacity: 0,
-        y: 25,
-        rotation: 10,
-        scale: 0.7,
-        duration: 0.6,
-        stagger: 0.12,
-        ease: "back.out(1.7)"
-      }, "-=0.3")
-      .from('.hero-cta .btn', {
-        opacity: 0,
-        y: 20,
-        scale: 0.6,
-        rotation: -5,
-        duration: 0.6,
-        stagger: 0.1,
-        ease: "back.out(1.7)"
-      }, "-=0.2");
-
-    // Animaciones básicas de elementos flotantes
-    this.initFloatingAnimations();
-
-    // Contadores simples
-    this.initCounterAnimations();
-
-    // Scroll indicator simple
-    this.initScrollIndicatorAnimation();
-
-    // NO HOVER EFFECTS - Para evitar problemas de visibilidad
-
-    // Verificación final de visibilidad después de todas las animaciones
-    setTimeout(() => {
-      this.ensureVisibilityAfterAnimations();
-    }, 2000);
+    // Configurar animaciones con ScrollTrigger para activarse al hacer scroll
+    // Estas animaciones se ejecutarán cuando la sección entre en el viewport
   }
 
   private ensureVisibilityAfterAnimations() {
@@ -314,6 +249,169 @@ export class HeroComponent implements OnInit, AfterViewInit, OnDestroy {
         yoyo: true
       });
     }
+  }
+
+  // 🔄 NUEVA FUNCIÓN: Configurar todas las animaciones de scroll para la sección hero
+  private initScrollAnimations() {
+    // Título principal con efecto de entrada
+    if (this.heroTitle?.nativeElement) {
+      gsap.fromTo(this.heroTitle.nativeElement,
+        { 
+          opacity: 0, 
+          y: 50, 
+          scale: 0.95
+        },
+        {
+          opacity: 1, 
+          y: 0, 
+          scale: 1,
+          duration: 1, 
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: ".hero",
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+    }
+    
+    // Líneas del título con stagger effect
+    gsap.fromTo('.title-line',
+      { 
+        opacity: 0, 
+        y: 30,
+        rotationX: 90,
+        transformOrigin: "center bottom"
+      },
+      {
+        opacity: 1, 
+        y: 0,
+        rotationX: 0,
+        duration: 0.8, 
+        stagger: 0.15,
+        ease: "back.out(1.7)",
+        scrollTrigger: {
+          trigger: ".hero",
+          start: "top 80%",
+          toggleActions: "play none none reverse"
+        }
+      }
+    );
+    
+    // Badge del hero
+    if (this.heroBadge?.nativeElement) {
+      gsap.fromTo(this.heroBadge.nativeElement,
+        { 
+          opacity: 0, 
+          y: 20,
+          scale: 0.5,
+          rotation: 180
+        },
+        {
+          opacity: 1, 
+          y: 0,
+          scale: 1,
+          rotation: 0,
+          duration: 1.2, 
+          ease: "back.out(2)",
+          scrollTrigger: {
+            trigger: ".hero",
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+    }
+    
+    // Subtítulo
+    if (this.heroSubtitle?.nativeElement) {
+      gsap.fromTo(this.heroSubtitle.nativeElement,
+        { 
+          opacity: 0, 
+          y: 30,
+          rotationY: 25
+        },
+        {
+          opacity: 1, 
+          y: 0,
+          rotationY: 0,
+          duration: 0.8, 
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".hero",
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+    }
+    
+    // Estadísticas
+    gsap.utils.toArray('.stat-item').forEach((element: any, index: number) => {
+      gsap.fromTo(element,
+        { 
+          opacity: 0, 
+          y: 25,
+          rotation: 10,
+          scale: 0.7
+        },
+        {
+          opacity: 1, 
+          y: 0,
+          rotation: 0,
+          scale: 1,
+          duration: 0.6, 
+          ease: "back.out(1.7)",
+          scrollTrigger: {
+            trigger: ".hero",
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+    });
+    
+    // Botones CTA
+    gsap.utils.toArray('.hero-cta .btn').forEach((element: any, index: number) => {
+      gsap.fromTo(element,
+        { 
+          opacity: 0, 
+          y: 20,
+          scale: 0.6,
+          rotation: -5
+        },
+        {
+          opacity: 1, 
+          y: 0,
+          scale: 1,
+          rotation: 0,
+          duration: 0.6, 
+          ease: "back.out(1.7)",
+          scrollTrigger: {
+            trigger: ".hero",
+            start: "top 80%",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+    });
+
+    // Animaciones básicas de elementos flotantes
+    this.initFloatingAnimations();
+
+    // Contadores simples
+    this.initCounterAnimations();
+
+    // Scroll indicator simple
+    this.initScrollIndicatorAnimation();
+
+    // NO HOVER EFFECTS - Para evitar problemas de visibilidad
+
+    // Verificación final de visibilidad después de todas las animaciones
+    setTimeout(() => {
+      this.ensureVisibilityAfterAnimations();
+    }, 2000);
   }
 
   private createParticles() {

@@ -202,6 +202,32 @@ export class AnimationService {
     );
   }
 
+  // 🌟 ANIMACIÓN DE TÍTULO DE SECCIÓN CON SCROLL
+  sectionTitleAnimation(element: string | Element): void {
+    if (!this.isBrowser) return;
+
+    // Animación de entrada suave para títulos de sección
+    gsap.fromTo(element,
+      { 
+        opacity: 0, 
+        y: 50, 
+        scale: 0.95
+      },
+      {
+        opacity: 1, 
+        y: 0, 
+        scale: 1,
+        duration: 1, 
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: element,
+          start: "top 80%",
+          toggleActions: "play none none reverse"
+        }
+      }
+    );
+  }
+
   // 🧹 LIMPIAR TODAS LAS ANIMACIONES
   killAllAnimations(): void {
     if (!this.isBrowser) return;

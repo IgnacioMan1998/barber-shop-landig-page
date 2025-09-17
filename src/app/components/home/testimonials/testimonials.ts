@@ -47,6 +47,9 @@ export class TestimonialsComponent implements OnInit, AfterViewInit {
   }
 
   private initTestimonialsAnimations() {
+    // Animate section title
+    this.animationService.sectionTitleAnimation('.section-title');
+    
     // Animate testimonial cards with scroll trigger
     if (this.testimonialCards) {
       this.testimonialCards.forEach(cardRef => {

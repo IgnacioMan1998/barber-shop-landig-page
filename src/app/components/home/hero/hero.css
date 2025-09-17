@@ -107,6 +107,12 @@
   margin-bottom: var(--spacing-md);
   text-transform: uppercase;
   letter-spacing: 2px;
+  background: linear-gradient(135deg, var(--primary-gold) 0%, #f4d03f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+  position: relative;
 }
 
 .title-line {
@@ -131,6 +137,21 @@
   height: 4px;
   background: var(--gradient-gold);
   border-radius: 2px;
+}
+
+/* Animated title effects */
+.animated-title {
+  background: linear-gradient(45deg, #fff, var(--primary-gold), #fff);
+  background-size: 200% 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 /* Hero Subtitle */
