@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit, inject, PLATFORM_ID, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { AnimationService } from '../../../services/animation';
+import { ResponsiveService } from '../../../services/responsive';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -22,6 +23,7 @@ interface TeamMember {
 export class Team implements OnInit, AfterViewInit {
   @ViewChild('teamContainer', { static: false }) teamContainer!: ElementRef;
   private animationService = inject(AnimationService);
+  private responsiveService = inject(ResponsiveService);
   private platformId = inject(PLATFORM_ID);
 
   teamMembers: TeamMember[] = [
@@ -59,10 +61,12 @@ export class Team implements OnInit, AfterViewInit {
     if (isPlatformBrowser(this.platformId)) {
       // Registrar plugins de GSAP
       gsap.registerPlugin(ScrollTrigger);
-      
+
       setTimeout(() => {
-        this.initHorizontalScroll();
-        this.initTextAnimations();
+        if (!this.responsiveService.isMobile()) {
+          this.initHorizontalScroll();
+          this.initTextAnimations();
+        }
         this.initTeamAnimations();
       }, 100);
     }
@@ -193,10 +197,12 @@ export class Team implements OnInit, AfterViewInit {
       // Animación del subtítulo
       this.animationService.heroEntryAnimation('.section-subtitle');
 
-      // Animación individual para cada imagen
-      document.querySelectorAll('.team-item').forEach((item) => {
-        this.animationService.cardScrollAnimation(item);
-      });
+      // Animación individual para cada imagen - lighter on mobile
+      if (!this.responsiveService.isMobile()) {
+        document.querySelectorAll('.team-item').forEach((item) => {
+          this.animationService.cardScrollAnimation(item);
+        });
+      }
       console.log('Team animations initialized successfully');
     } catch (error) {
       console.error('Error initializing team animations:', error);

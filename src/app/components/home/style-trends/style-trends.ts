@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit, inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { AnimationService } from '../../../services/animation';
+import { ResponsiveService } from '../../../services/responsive';
 import { StyleTrend } from '../../../interfaces/pricing';
 
 @Component({
@@ -11,6 +12,7 @@ import { StyleTrend } from '../../../interfaces/pricing';
 })
 export class StyleTrendsComponent implements OnInit, AfterViewInit {
   private animationService = inject(AnimationService);
+  private responsiveService = inject(ResponsiveService);
   private platformId = inject(PLATFORM_ID);
 
   styleTrends: StyleTrend[] = [
@@ -90,10 +92,22 @@ export class StyleTrendsComponent implements OnInit, AfterViewInit {
   }
 
   get filteredTrends(): StyleTrend[] {
+    let filtered: StyleTrend[];
+
     if (this.selectedCategory === 'all') {
-      return this.styleTrends;
+      filtered = this.styleTrends;
+    } else {
+      filtered = this.styleTrends.filter(trend => trend.category === this.selectedCategory);
     }
-    return this.styleTrends.filter(trend => trend.category === this.selectedCategory);
+
+    // Performance optimization: limit items on smaller screens
+    if (this.responsiveService.isMobile()) {
+      return filtered.slice(0, 3); // Show only first 3 on mobile
+    } else if (this.responsiveService.isTablet()) {
+      return filtered.slice(0, 4); // Show first 4 on tablet
+    }
+
+    return filtered; // Show all on desktop
   }
 
   get trendingStyles(): StyleTrend[] {

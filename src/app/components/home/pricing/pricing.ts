@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterViewInit, inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { AnimationService } from '../../../services/animation';
+import { ResponsiveService } from '../../../services/responsive';
 import { PricingPlan } from '../../../interfaces/pricing';
 
 @Component({
@@ -11,6 +12,7 @@ import { PricingPlan } from '../../../interfaces/pricing';
 })
 export class PricingComponent implements OnInit, AfterViewInit {
   private animationService = inject(AnimationService);
+  private responsiveService = inject(ResponsiveService);
   private platformId = inject(PLATFORM_ID);
 
   pricingPlans: PricingPlan[] = [
@@ -100,8 +102,18 @@ export class PricingComponent implements OnInit, AfterViewInit {
         console.error('Invalid plan selected');
         return;
       }
+
+      // Mobile-specific handling
+      if (this.responsiveService.isMobile()) {
+        console.log('Mobile plan selection:', plan);
+        // On mobile, perhaps show a simplified booking flow
+        // For now, just log differently
+      } else {
+        console.log('Desktop plan selection:', plan);
+        // Desktop can have more complex interactions
+      }
+
       // Handle plan selection - could integrate with booking system
-      console.log('Selected plan:', plan);
       // This could trigger a booking modal or navigate to booking page
     } catch (error) {
       console.error('Error selecting plan:', error);

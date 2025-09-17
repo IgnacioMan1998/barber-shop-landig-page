@@ -1,15 +1,17 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Service, ServiceCategory } from '../models/service.interface';
 import { TeamMember } from '../models/team-member.interface';
 import { Testimonial } from '../models/testimonial.interface';
 import { ContactInfo, ContactForm } from '../models/contact.interface';
+import { ResponsiveService, ScreenSize } from './responsive';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
+  private responsiveService = inject(ResponsiveService);
 
   private readonly services: Service[] = [
     {
@@ -160,12 +162,16 @@ export class DataService {
     return null;
   }
 
-  getServices(): Observable<Service[]> {
+  getServices(limit?: number): Observable<Service[]> {
     console.log('Fetching services...');
     if (this.simulateError()) {
       return throwError(() => new Error('Failed to fetch services'));
     }
-    return of(this.services).pipe(
+
+    const responsiveLimit = limit || this.getResponsiveLimit('services');
+    const limitedServices = this.services.slice(0, responsiveLimit);
+
+    return of(limitedServices).pipe(
       catchError(error => {
         console.error('Error fetching services:', error);
         return throwError(() => error);
@@ -187,12 +193,16 @@ export class DataService {
     );
   }
 
-  getTeamMembers(): Observable<TeamMember[]> {
+  getTeamMembers(limit?: number): Observable<TeamMember[]> {
     console.log('Fetching team members...');
     if (this.simulateError()) {
       return throwError(() => new Error('Failed to fetch team members'));
     }
-    return of(this.teamMembers).pipe(
+
+    const responsiveLimit = limit || this.getResponsiveLimit('team');
+    const limitedTeamMembers = this.teamMembers.slice(0, responsiveLimit);
+
+    return of(limitedTeamMembers).pipe(
       catchError(error => {
         console.error('Error fetching team members:', error);
         return throwError(() => error);
@@ -200,17 +210,36 @@ export class DataService {
     );
   }
 
-  getTestimonials(): Observable<Testimonial[]> {
+  getTestimonials(limit?: number): Observable<Testimonial[]> {
     console.log('Fetching testimonials...');
     if (this.simulateError()) {
       return throwError(() => new Error('Failed to fetch testimonials'));
     }
-    return of(this.testimonials).pipe(
+
+    const responsiveLimit = limit || this.getResponsiveLimit('testimonials');
+    const limitedTestimonials = this.testimonials.slice(0, responsiveLimit);
+
+    return of(limitedTestimonials).pipe(
       catchError(error => {
         console.error('Error fetching testimonials:', error);
         return throwError(() => error);
       })
     );
+  }
+
+  private getResponsiveLimit(dataType: string): number {
+    const screenSize = this.responsiveService.currentScreenSize;
+
+    switch (dataType) {
+      case 'testimonials':
+        return screenSize === 'mobile' ? 2 : screenSize === 'tablet' ? 3 : 5;
+      case 'services':
+        return screenSize === 'mobile' ? 3 : screenSize === 'tablet' ? 4 : 6;
+      case 'team':
+        return screenSize === 'mobile' ? 2 : screenSize === 'tablet' ? 3 : 4;
+      default:
+        return 5;
+    }
   }
 
   getContactInfo(): Observable<ContactInfo> {
