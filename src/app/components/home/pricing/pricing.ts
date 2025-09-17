@@ -95,8 +95,16 @@ export class PricingComponent implements OnInit, AfterViewInit {
   }
 
   selectPlan(plan: PricingPlan) {
-    // Handle plan selection - could integrate with booking system
-    console.log('Selected plan:', plan);
-    // This could trigger a booking modal or navigate to booking page
+    try {
+      if (!plan || !plan.id) {
+        console.error('Invalid plan selected');
+        return;
+      }
+      // Handle plan selection - could integrate with booking system
+      console.log('Selected plan:', plan);
+      // This could trigger a booking modal or navigate to booking page
+    } catch (error) {
+      console.error('Error selecting plan:', error);
+    }
   }
 }

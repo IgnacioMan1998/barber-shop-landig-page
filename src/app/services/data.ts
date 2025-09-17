@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { Service, ServiceCategory } from '../models/service.interface';
 import { TeamMember } from '../models/team-member.interface';
 import { Testimonial } from '../models/testimonial.interface';
-import { ContactInfo } from '../models/contact.interface';
+import { ContactInfo, ContactForm } from '../models/contact.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  private services: Service[] = [
+  private readonly services: Service[] = [
     {
       id: 1,
       name: 'Classic Haircut',
@@ -49,7 +50,7 @@ export class DataService {
     }
   ];
 
-  private teamMembers: TeamMember[] = [
+  private readonly teamMembers: TeamMember[] = [
     {
       id: 1,
       name: 'Marcus Johnson',
@@ -90,7 +91,7 @@ export class DataService {
     }
   ];
 
-  private testimonials: Testimonial[] = [
+  private readonly testimonials: Testimonial[] = [
     {
       id: 1,
       clientName: 'John Smith',
@@ -118,7 +119,7 @@ export class DataService {
     }
   ];
 
-  private contactInfo: ContactInfo = {
+  private readonly contactInfo: ContactInfo = {
     email: 'info@rubickbarbershop.com',
     phone: '+1 (555) 123-4567',
     address: '123 Main Street, Downtown, NY 10001',
@@ -141,30 +142,108 @@ export class DataService {
 
   constructor() { }
 
+  private simulateError(): boolean {
+    // Simulate occasional errors for testing (10% chance)
+    return Math.random() < 0.1;
+  }
+
+  private validateContactForm(formData: ContactForm): string | null {
+    if (!formData.name || formData.name.trim().length < 2) {
+      return 'Name must be at least 2 characters long.';
+    }
+    if (!formData.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      return 'Please provide a valid email address.';
+    }
+    if (!formData.message || formData.message.trim().length < 10) {
+      return 'Message must be at least 10 characters long.';
+    }
+    return null;
+  }
+
   getServices(): Observable<Service[]> {
-    return of(this.services);
+    console.log('Fetching services...');
+    if (this.simulateError()) {
+      return throwError(() => new Error('Failed to fetch services'));
+    }
+    return of(this.services).pipe(
+      catchError(error => {
+        console.error('Error fetching services:', error);
+        return throwError(() => error);
+      })
+    );
   }
 
   getServicesByCategory(category: ServiceCategory): Observable<Service[]> {
+    console.log(`Fetching services for category: ${category}`);
+    if (this.simulateError()) {
+      return throwError(() => new Error(`Failed to fetch services for category ${category}`));
+    }
     const filteredServices = this.services.filter(service => service.category === category);
-    return of(filteredServices);
+    return of(filteredServices).pipe(
+      catchError(error => {
+        console.error(`Error fetching services for category ${category}:`, error);
+        return throwError(() => error);
+      })
+    );
   }
 
   getTeamMembers(): Observable<TeamMember[]> {
-    return of(this.teamMembers);
+    console.log('Fetching team members...');
+    if (this.simulateError()) {
+      return throwError(() => new Error('Failed to fetch team members'));
+    }
+    return of(this.teamMembers).pipe(
+      catchError(error => {
+        console.error('Error fetching team members:', error);
+        return throwError(() => error);
+      })
+    );
   }
 
   getTestimonials(): Observable<Testimonial[]> {
-    return of(this.testimonials);
+    console.log('Fetching testimonials...');
+    if (this.simulateError()) {
+      return throwError(() => new Error('Failed to fetch testimonials'));
+    }
+    return of(this.testimonials).pipe(
+      catchError(error => {
+        console.error('Error fetching testimonials:', error);
+        return throwError(() => error);
+      })
+    );
   }
 
   getContactInfo(): Observable<ContactInfo> {
-    return of(this.contactInfo);
+    console.log('Fetching contact info...');
+    if (this.simulateError()) {
+      return throwError(() => new Error('Failed to fetch contact info'));
+    }
+    return of(this.contactInfo).pipe(
+      catchError(error => {
+        console.error('Error fetching contact info:', error);
+        return throwError(() => error);
+      })
+    );
   }
 
-  // Simular envío de formulario de contacto
-  submitContactForm(formData: any): Observable<boolean> {
-    // Aquí iría la lógica para enviar el formulario a un backend
-    return of(true);
+  // Submit contact form with validation
+  submitContactForm(formData: ContactForm): Observable<boolean> {
+    console.log('Submitting contact form...');
+    const validationError = this.validateContactForm(formData);
+    if (validationError) {
+      console.error('Contact form validation error:', validationError);
+      return throwError(() => new Error(validationError));
+    }
+    if (this.simulateError()) {
+      return throwError(() => new Error('Failed to submit contact form'));
+    }
+    // Simulate successful submission
+    console.log('Contact form submitted successfully');
+    return of(true).pipe(
+      catchError(error => {
+        console.error('Error submitting contact form:', error);
+        return throwError(() => error);
+      })
+    );
   }
 }

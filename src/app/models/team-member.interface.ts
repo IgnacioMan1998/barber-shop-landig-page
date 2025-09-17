@@ -1,3 +1,5 @@
+export type SocialMediaPlatform = 'instagram' | 'facebook' | 'twitter';
+
 export interface TeamMember {
   id: number;
   name: string;
@@ -6,9 +8,5 @@ export interface TeamMember {
   image: string;
   experience: number;
   specialties: string[];
-  socialMedia: {
-    instagram?: string;
-    facebook?: string;
-    twitter?: string;
-  };
+  socialMedia?: Partial<Record<SocialMediaPlatform, string>>;
 }

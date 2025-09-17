@@ -35,7 +35,7 @@ import { Contact } from './components/home/contact/contact';
 })
 export class AppComponent implements OnInit {
   private platformId = inject(PLATFORM_ID);
-  
+
   protected readonly title = signal('Rubick Barbershop');
   showLoading = false; // DESHABILITADO
 
